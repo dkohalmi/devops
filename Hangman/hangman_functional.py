@@ -24,8 +24,22 @@ def print_secret_word(secret_word, letters_to_find):
                 if secret_word[i] in letters_to_find:
                     print("_ ", end = "")
                 else:
-                    print(secret_word[i].upper() + " ", end = "")    
+                    print(secret_word[i].upper() + " ", end = "")   
+    print("")                 
 
+# Print the hangman:
+def print_hangman(number_of_guesses):
+    print("_"*9)
+    print("|  /    ")
+    print("| /     ")
+    print("|/      ")
+    print("|")
+    print("|")
+    print("|")
+    print("|")
+    print("|")
+    print("|")
+    print("|")
 
 # 2. Player - Guess a letter
 
@@ -41,6 +55,7 @@ def main():
     number_of_guesses = 8
     while number_of_guesses > 0:
         print_secret_word(secret_word, letters_to_find)
+        print_hangman(number_of_guesses)
         letter = input(f"Hi 2.Player, it's your turn. You have {number_of_guesses} guesses. Guess a letter:")
 
         if letter in letters_to_find:
