@@ -20,11 +20,11 @@ def word_input():
 
 # Print the word:
 def print_secret_word(secret_word, letters_to_find):
-    for i in len(secret_word):
+    for i in range(len(secret_word)):
                 if secret_word[i] in letters_to_find:
                     print("_ ", end = "")
                 else:
-                    print(secret_word[i].uppercase() + " ", end = "")    
+                    print(secret_word[i].upper() + " ", end = "")    
 
 
 # 2. Player - Guess a letter
@@ -40,11 +40,13 @@ def main():
 
     number_of_guesses = 8
     while number_of_guesses > 0:
+        print_secret_word(secret_word, letters_to_find)
         letter = input(f"Hi 2.Player, it's your turn. You have {number_of_guesses} guesses. Guess a letter:")
 
         if letter in letters_to_find:
              letters_to_find = letters_to_find - set(letter)
              if not letters_to_find:
+                 print_secret_word(secret_word, letters_to_find)
                  print("You won, 2. Player. Congratulations!")
                  break        
         elif letter in secret_word:
