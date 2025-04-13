@@ -17,6 +17,9 @@ def clear():
 # 1. Player - Input a word
 def word_input():
     word = input("Hi 1. Player, it's your turn. Type in a secret word or hit Enter for a random one:")
+    if not word.isalpha() and word:
+        print("Your word should only contain letters.")
+        word=word_input()
     if not word:
         word = choose_random_word()
     return word
