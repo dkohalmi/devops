@@ -51,12 +51,13 @@ def letter_input(number_of_guesses, letters_guessed):
 # Print the word:
 def print_secret_word(secret_word, letters_to_find):
     """Prints a word with an _ for each unknown letters."""
-    for i in range(len(secret_word)):
-                if secret_word[i].upper() in letters_to_find:
-                    print("_ ", end = "")
-                else:
-                    print(secret_word[i].upper() + " ", end = "")   
-    print("")                 
+    for letter in secret_word.upper():
+        if letter in letters_to_find:
+            print("_", end = "")
+        else:
+            print(letter, end = "")   
+    print("\n")      
+            
 
 # Print the hangman:
 def print_hangman(number_of_guesses):
@@ -159,15 +160,8 @@ def print_hangman(number_of_guesses):
 
 def print_letters_guessed(letters_guessed):
     """Prints the letters that were already guessed."""
-    print("Letters guessed: ", end="")
-    if not letters_guessed:
-        print()
-    else:    
-        for i, letter in enumerate(letters_guessed):
-            if i != len(letters_guessed)-1:
-                print(letter, end=", ")
-            else:
-                print(letter)
+    print("Letters guessed: ", ", ".join(letters_guessed))
+
              
 def hangman_functional():
     """Hangman game."""
