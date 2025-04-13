@@ -145,8 +145,17 @@ def print_hangman(number_of_guesses):
     #print("|")
     #print("|")
 
-# 2. Player - Guess a letter
-
+def print_letters_guessed(letters_guessed):
+    print("Letters guessed: ", end="")
+    if not letters_guessed:
+        print()
+    else:    
+        for i, letter in enumerate(letters_guessed):
+            if i != len(letters_guessed)-1:
+                print(letter, end=", ")
+            else:
+                print(letter)
+             
 def main():
     secret_word = word_input()
     clear()
@@ -154,12 +163,16 @@ def main():
 
     # Letters in secret_word:
     letters_to_find = set(secret_word.upper()) 
+    letters_guessed = []
     #print(letters_to_find)
     number_of_guesses = 8
     while number_of_guesses > 0:
         print_secret_word(secret_word, letters_to_find)
         print_hangman(number_of_guesses)
+        print_letters_guessed(letters_guessed)
+        #print(f"Letters guessed: {letters_guessed} ")
         letter = letter_input(number_of_guesses)
+        letters_guessed.append(letter)
         #letter = input(f"Hi 2.Player, it's your turn. You have {number_of_guesses} guesses. Guess a letter:").upper()
 
         if letter in letters_to_find:
