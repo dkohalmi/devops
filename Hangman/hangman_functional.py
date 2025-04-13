@@ -35,10 +35,13 @@ def choose_random_word():
     return random.choice(mylist)
 
 # 2. Player - Input a letter:
-def letter_input(number_of_guesses):
+def letter_input(number_of_guesses, letters_guessed):
     """Takes a single letter as input."""
     while True:
-        letter = input(f"Hi 2.Player, you have {number_of_guesses} guesses. Guess a letter:").strip().upper()    
+        letter = input(f"Hi 2.Player, you have {number_of_guesses} guesses. Guess a letter:").strip().upper()
+        if letter in letters_guessed:
+            print("You already guessed that letter.")
+            continue   
         if letter.isalpha() and len(letter) == 1:
             return letter
         print("Please enter one single alphabetic letter.")
@@ -180,11 +183,9 @@ def main():
         print_secret_word(secret_word, letters_to_find)
         print_hangman(number_of_guesses)
         print_letters_guessed(letters_guessed)
-        #print(f"Letters guessed: {letters_guessed} ")
-        letter = letter_input(number_of_guesses)
+        letter = letter_input(number_of_guesses, letters_guessed)
         letters_guessed.append(letter)
-        #letter = input(f"Hi 2.Player, it's your turn. You have {number_of_guesses} guesses. Guess a letter:").upper()
-
+       
         if letter in letters_to_find:
              letters_to_find = letters_to_find - set(letter)
              if not letters_to_find:
