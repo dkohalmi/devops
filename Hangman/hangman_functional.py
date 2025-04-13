@@ -5,6 +5,7 @@
 #################################
 import os
 import platform
+import random
 
 
 def clear():
@@ -15,8 +16,16 @@ def clear():
 
 # 1. Player - Input a word
 def word_input():
-    word = input("Hi 1. Player, it's your turn. Type in a secret word:")
+    word = input("Hi 1. Player, it's your turn. Type in a secret word or hit Enter for a random one:")
+    if not word:
+        word = choose_random_word()
     return word
+
+def choose_random_word():
+    mylist = ["apple", "banana", "cherry","house", "table", "chair", "pizza", "tiger", "beach", "robot", "ghost", 
+              "music", "bicycle", "galaxy", "dolphin", "jungle", "cactus", "window", "fortune", "castle", "thunder", 
+              "mirror", "zephyr", "awkward", "rhythm", "mystify", "oxygen", "iceberg", "knapsac", "jockey", "whizzing"]
+    return random.choice(mylist)
 
 # Print the word:
 def print_secret_word(secret_word, letters_to_find):
