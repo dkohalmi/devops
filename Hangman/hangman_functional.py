@@ -29,26 +29,104 @@ def print_secret_word(secret_word, letters_to_find):
 
 # Print the hangman:
 def print_hangman(number_of_guesses):
+    # Line 1
     print("_"*9)
-    print("|  /    |")
-    print("| /     |")
-    print("|/      O")
-    print("|       |")
-    print("|      /|\ ")
-    print("|     / | \ ")
-    print("|      / \  ")
-    print("|     /   \ ")
-    print("|")
-    print("|")
+    # Line 2
+    print("|  /", end="") 
+    if number_of_guesses < 8:
+        print("    |")
+    else:
+        print()
+    # Line 3        
+    print("| /", end="") 
+    if number_of_guesses < 8:
+        print("     |")
+    else:
+        print()  
+    # Line 4
+    print("|/", end= "")
+    if number_of_guesses < 7:        
+        print("      O")
+    else:
+        print()   
+    # Line 5  
+    print("|", end="")  
+    if number_of_guesses < 6:     
+        print("       |")
+    else:
+        print()
+    # Line 6
+    print("|", end="")       
+    if number_of_guesses < 5:
+        print("      /", end="")
+        if number_of_guesses < 4:
+            print("|", end="")
+            if number_of_guesses < 3:
+                print("\\")
+            else:
+                print()    
+        else:
+            print()
+    else:
+        print()            
+    # Line 7
+    print("|", end="")       
+    if number_of_guesses < 5:
+        print("     /", end="")
+        if number_of_guesses < 4:
+            print(" |", end="")
+            if number_of_guesses < 3:
+                print(" \\")
+            else:
+                print()    
+        else:
+            print()
+    else:
+        print()
+
+    # Line 8 
+    print("|", end="")       
+    if number_of_guesses < 2:
+        print("      /", end="")
+        if number_of_guesses < 1:
+            print(" \\")  
+        else:
+            print()      
+    else:
+        print()
+
+
+    # Line 9        
+    print("|", end="")       
+    if number_of_guesses < 2:
+        print("     /", end="")
+        if number_of_guesses < 1:
+            print("   \\")  
+        else:
+            print()      
+    else:
+        print()
+
+
+    #print("_"*9)
+    #print("|  /    | ")
+    #print("| /     | ")
+    #print("|/      O ")
+    #print("|       | ")
+    #print("|      /|\ ")
+    #print("|     / | \ ")
+    #print("|      / \  ")
+    #print("|     /   \ ")
+    #print("|")
+    #print("|")
 
 # 2. Player - Guess a letter
 
 def main():
     secret_word = word_input()
     clear()
-    print(set(secret_word))
+    #print(set(secret_word))
 
-    print("_ "*len(secret_word))
     # Letters in secret_word:
     letters_to_find = set(secret_word) 
 
@@ -70,6 +148,7 @@ def main():
              number_of_guesses -= 1
              print(f"{letter} is not in the word")
              if not number_of_guesses:
+                  print_hangman(number_of_guesses)
                   print("You lost, 2. Player.")
              
     
