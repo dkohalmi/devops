@@ -9,6 +9,7 @@ import random
 
 
 def clear():
+    """Clears the console."""
     if platform.system() == 'Linux':
         os.system('clear')
     elif platform.system() == 'Windows':
@@ -16,6 +17,7 @@ def clear():
 
 # 1. Player - Input a word:
 def word_input():
+    """Takes a word as an input or choose a random one from a list and returns it."""
     word = input("Hi 1. Player, it's your turn. Type in a secret word or hit Enter for a random one:")
     if not word.isalpha() and word:
         print("Your word should only contain letters.")
@@ -25,6 +27,7 @@ def word_input():
     return word.upper()
 
 def choose_random_word():
+    """Chooses a random word from the built-in list."""
     mylist = ["apple", "banana", "cherry","house", "table", "chair", "pizza", "tiger", "beach", "robot", "ghost", 
               "music", "bicycle", "galaxy", "dolphin", "jungle", "cactus", "window", "fortune", "castle", "thunder", 
               "mirror", "zephyr", "awkward", "rhythm", "mystify", "oxygen", "iceberg", "knapsac", "jockey", "whizzing"]
@@ -32,6 +35,7 @@ def choose_random_word():
 
 # 2. Player - Input a letter:
 def letter_input(number_of_guesses):
+    """Takes a letter as an input."""
     letter = input(f"Hi 2.Player, it's your turn. You have {number_of_guesses} guesses. Guess a letter:").upper()
     if not letter.isalpha() or len(letter) != 1:
         print("Your guess should be one single letter.")
@@ -40,6 +44,7 @@ def letter_input(number_of_guesses):
 
 # Print the word:
 def print_secret_word(secret_word, letters_to_find):
+    """Prints a word with an _ for each unknown letters."""
     for i in range(len(secret_word)):
                 if secret_word[i].upper() in letters_to_find:
                     print("_ ", end = "")
@@ -49,6 +54,7 @@ def print_secret_word(secret_word, letters_to_find):
 
 # Print the hangman:
 def print_hangman(number_of_guesses):
+    """Draws a Hangman to the console, depending on the number of false guesses."""
     # Line 1
     print("_"*9)
     # Line 2
@@ -146,6 +152,7 @@ def print_hangman(number_of_guesses):
     #print("|")
 
 def print_letters_guessed(letters_guessed):
+    """Prints the letters that were already guessed."""
     print("Letters guessed: ", end="")
     if not letters_guessed:
         print()
@@ -157,6 +164,7 @@ def print_letters_guessed(letters_guessed):
                 print(letter)
              
 def main():
+    """Hangman game."""
     secret_word = word_input()
     clear()
     #print(set(secret_word))
