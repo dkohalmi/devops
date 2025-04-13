@@ -14,7 +14,7 @@ def clear():
     elif platform.system() == 'Windows':
         os.system('cls')
 
-# 1. Player - Input a word
+# 1. Player - Input a word:
 def word_input():
     word = input("Hi 1. Player, it's your turn. Type in a secret word or hit Enter for a random one:")
     if not word.isalpha() and word:
@@ -22,7 +22,7 @@ def word_input():
         word=word_input()
     if not word:
         word = choose_random_word()
-    return word
+    return word.upper()
 
 def choose_random_word():
     mylist = ["apple", "banana", "cherry","house", "table", "chair", "pizza", "tiger", "beach", "robot", "ghost", 
@@ -30,10 +30,18 @@ def choose_random_word():
               "mirror", "zephyr", "awkward", "rhythm", "mystify", "oxygen", "iceberg", "knapsac", "jockey", "whizzing"]
     return random.choice(mylist)
 
+# 2. Player - Input a letter:
+def letter_input(number_of_guesses):
+    letter = input(f"Hi 2.Player, it's your turn. You have {number_of_guesses} guesses. Guess a letter:").upper()
+    if not letter.isalpha() or len(letter) != 1:
+        print("Your guess should be one single letter.")
+        letter =letter_input(number_of_guesses)
+    return letter
+
 # Print the word:
 def print_secret_word(secret_word, letters_to_find):
     for i in range(len(secret_word)):
-                if secret_word[i] in letters_to_find:
+                if secret_word[i].upper() in letters_to_find:
                     print("_ ", end = "")
                 else:
                     print(secret_word[i].upper() + " ", end = "")   
@@ -119,7 +127,12 @@ def print_hangman(number_of_guesses):
     else:
         print()
 
-
+    # Line 10
+    print("|")
+    
+    # Line 11
+    print("|")
+    
     #print("_"*9)
     #print("|  /    | ")
     #print("| /     | ")
@@ -140,13 +153,14 @@ def main():
     #print(set(secret_word))
 
     # Letters in secret_word:
-    letters_to_find = set(secret_word) 
-
+    letters_to_find = set(secret_word.upper()) 
+    #print(letters_to_find)
     number_of_guesses = 8
     while number_of_guesses > 0:
         print_secret_word(secret_word, letters_to_find)
         print_hangman(number_of_guesses)
-        letter = input(f"Hi 2.Player, it's your turn. You have {number_of_guesses} guesses. Guess a letter:")
+        letter = letter_input(number_of_guesses)
+        #letter = input(f"Hi 2.Player, it's your turn. You have {number_of_guesses} guesses. Guess a letter:").upper()
 
         if letter in letters_to_find:
              letters_to_find = letters_to_find - set(letter)
