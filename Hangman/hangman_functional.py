@@ -17,14 +17,15 @@ def clear():
 
 # 1. Player - Input a word:
 def word_input():
-    """Takes a word as an input or choose a random one from a list and returns it."""
-    word = input("Hi 1. Player, it's your turn. Type in a secret word or hit Enter for a random one:")
-    if not word.isalpha() and word:
-        print("Your word should only contain letters.")
-        word=word_input()
-    if not word:
-        word = choose_random_word()
-    return word.upper()
+    """Takes a word as input or choose a random one from a list and returns it."""
+    while True:
+        word = input("Hi 1. Player, type a secret word or press Enter for a random one:").strip()
+        if not word:
+            return choose_random_word().upper()
+        elif word.isalpha():
+            return word.upper()
+        else:
+            print("Your word should only contain letters.")
 
 def choose_random_word():
     """Chooses a random word from the built-in list."""
@@ -35,12 +36,13 @@ def choose_random_word():
 
 # 2. Player - Input a letter:
 def letter_input(number_of_guesses):
-    """Takes a letter as an input."""
-    letter = input(f"Hi 2.Player, it's your turn. You have {number_of_guesses} guesses. Guess a letter:").upper()
-    if not letter.isalpha() or len(letter) != 1:
-        print("Your guess should be one single letter.")
-        letter =letter_input(number_of_guesses)
-    return letter
+    """Takes a single letter as input."""
+    while True:
+        letter = input(f"Hi 2.Player, you have {number_of_guesses} guesses. Guess a letter:").strip().upper()    
+        if letter.isalpha() and len(letter) == 1:
+            return letter
+        print("Please enter one single alphabetic letter.")
+        
 
 # Print the word:
 def print_secret_word(secret_word, letters_to_find):
