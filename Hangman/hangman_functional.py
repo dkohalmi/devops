@@ -30,14 +30,14 @@ def print_secret_word(secret_word, letters_to_find):
 # Print the hangman:
 def print_hangman(number_of_guesses):
     print("_"*9)
-    print("|  /    ")
-    print("| /     ")
-    print("|/      ")
-    print("|")
-    print("|")
-    print("|")
-    print("|")
-    print("|")
+    print("|  /    |")
+    print("| /     |")
+    print("|/      O")
+    print("|       |")
+    print("|      /|\ ")
+    print("|     / | \ ")
+    print("|      / \  ")
+    print("|     /   \ ")
     print("|")
     print("|")
 
